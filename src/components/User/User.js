@@ -1,6 +1,7 @@
 /*import {useState,useEffect} from "react";*/
 import "./User.css"
 
+
 export default function User(props) {
     const {name, surname,id, age,del,update,detail} = props
     return (

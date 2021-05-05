@@ -2,6 +2,7 @@ import {useState,useEffect} from "react";
 import User from "../User/User";
 import './Users.css'
 
+
 export default function Users(props) {
     let [name, setName] = useState("");
     let [surname, setSurname] = useState("");
