@@ -22,7 +22,8 @@ export default function Users(props) {
     const createCiti=(e)=>setCiti(citi=e.target.value);
 
     const del = (id) => {
-        setUsers(users.filter((value => value.id !== id)))
+        setUsers(users.filter((value => value.id !== userDetail.id)))
+        setUserDetail("")
     }
     const update = (id) => {
 
@@ -43,8 +44,8 @@ export default function Users(props) {
                         <User
                             key={value.id}
                             {...value}
-                            del={del}
-                            update={update}
+                           /* del={del}
+                            update={update}*/
                             detail={detail}
                         />
                     )
@@ -58,6 +59,8 @@ export default function Users(props) {
                         <div className={"info_user"}>
                             <span className={"user_phone"}>Phone:{userDetail.phone}</span>
                             <span className={"user_citi"}>Citi:{userDetail.citi}</span>
+                            <button className={"btn_up"} onClick={update}>update</button>
+                            <button className={"btn_del"} onClick={del}>del</button>
                         </div>
                     ):(
                         <span></span>
