@@ -9,9 +9,6 @@ export default function Header(){
                     <li>
                         <Link to="/users">Users</Link>
                     </li>
-                    <li>
-                        <Link to="/create">Create</Link>
-                    </li>
                 </ul>
         </div>
 
