@@ -11,7 +11,7 @@ export default function Users(props) {
     let [citi, setCiti] = useState("");
     let [users, setUsers] = useState(JSON.parse(localStorage.getItem("users"))||[]);
     let [userDetail, setUserDetail] = useState(null);
-
+    let [flag, setFlag] = useState(false);
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(users))
     })
@@ -32,10 +32,13 @@ export default function Users(props) {
         const detailUser=users.find(value => value.id===id);
         setUserDetail(detailUser)
     }
-    const create=(e)=>{
+    const create=()=>setFlag(true);
+    const close=()=>setFlag(false);
+    const add=(e)=>{
         e.preventDefault();
         setUsers([...users, {name, surname,age,phone,citi,id: Date.now()}])
-    }
+    };
+
     return (
         <div className={"wrapper"}>
             <div className={"box-user"}>
@@ -44,8 +47,6 @@ export default function Users(props) {
                         <User
                             key={value.id}
                             {...value}
-                           /* del={del}
-                            update={update}*/
                             detail={detail}
                         />
                     )
@@ -68,6 +69,8 @@ export default function Users(props) {
                 }
             </div>
             <div className={"box-form"}>
+                {
+                    flag?
                     <form>
                         <input
                             onChange={createName}
@@ -89,8 +92,12 @@ export default function Users(props) {
                             onChange={createCiti}
                             placeholder={"Citi"}
                         />
-                        <button onClick={create}>Create</button>
+                        <button onClick={add}>add</button>
+                        <button onClick={close}>close</button>
                     </form>
+                        :<span></span>
+                }
+                <button onClick={create}>Create</button>
             </div>
         </div>
     )
