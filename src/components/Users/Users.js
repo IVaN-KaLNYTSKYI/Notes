@@ -2,7 +2,6 @@ import {useState,useEffect} from "react";
 import User from "../User/User";
 import './Users.css'
 
-
 export default function Users(props) {
     let [name, setName] = useState("");
     let [surname, setSurname] = useState("");
@@ -21,23 +20,25 @@ export default function Users(props) {
     const createPhone=(e)=>setPhone(phone=e.target.value);
     const createCiti=(e)=>setCiti(citi=e.target.value);
 
-    const del = (id) => {
+    const del = () => {
         setUsers(users.filter((value => value.id !== userDetail.id)))
         setUserDetail("")
     }
-    const update = (id) => {
-
+    const update = () => {
     }
     const detail = (id) => {
         const detailUser=users.find(value => value.id===id);
         setUserDetail(detailUser)
     }
+
     const create=()=>setFlag(true);
     const close=()=>setFlag(false);
+
     const add=(e)=>{
         e.preventDefault();
         setUsers([...users, {name, surname,age,phone,citi,id: Date.now()}])
     };
+
 
     return (
         <div className={"wrapper"}>
@@ -97,6 +98,7 @@ export default function Users(props) {
                     </form>
                         :<span></span>
                 }
+
                 <button onClick={create}>Create</button>
             </div>
         </div>
