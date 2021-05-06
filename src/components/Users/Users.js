@@ -1,5 +1,6 @@
 import {useState,useEffect} from "react";
 import User from "../User/User";
+import Create from "../Create/Create";
 import './Users.css'
 
 export default function Users(props) {
@@ -14,11 +15,11 @@ export default function Users(props) {
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(users))
     })
-    const createName=(e)=>setName(name=e.target.value);
-    const createSurname=(e)=>setSurname(surname=e.target.value);
-    const createAge=(e)=>setAge(age=e.target.value);
-    const createPhone=(e)=>setPhone(phone=e.target.value);
-    const createCiti=(e)=>setCiti(citi=e.target.value);
+    const createName=(valueName)=>setName(name=valueName);
+    const createSurname=(valueSurname)=>setSurname(surname=valueSurname);
+    const createAge=(valueAge)=>setAge(age=valueAge);
+    const createPhone=(valuePhone)=>setPhone(phone=valuePhone);
+    const createCiti=(valueCiti)=>setCiti(citi=valueCiti);
 
     const del = () => {
         setUsers(users.filter((value => value.id !== userDetail.id)))
@@ -72,7 +73,16 @@ export default function Users(props) {
             <div className={"box-form"}>
                 {
                     flag?
-                    <form>
+                        <Create
+                            createName={createName}
+                            createSurname={createSurname}
+                            createAge={createAge}
+                            createPhone={createPhone}
+                            createCiti={createCiti}
+                            add={add}
+                            close={close}
+                        />
+                    /*<form>
                         <input
                             onChange={createName}
                             placeholder={"Name"}
@@ -95,10 +105,9 @@ export default function Users(props) {
                         />
                         <button onClick={add}>add</button>
                         <button onClick={close}>close</button>
-                    </form>
+                    </form>*/
                         :<span></span>
                 }
-
                 <button onClick={create}>Create</button>
             </div>
         </div>
