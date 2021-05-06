@@ -1,3 +1,4 @@
+import "./Create.css"
 export default function Create (props){
     const {createName,createSurname,createAge,createPhone,createCiti,add,close}=props
     return(
@@ -18,13 +19,14 @@ export default function Create (props){
                 <input
                     onChange={(e)=>createPhone(e.target.value)}
                     placeholder={"Phone"}
+                    defaultValue={"+380"}
                 />
                 <input
                     onChange={(e)=>createCiti(e.target.value)}
-                    placeholder={"Citi"}
+                    placeholder={"City"}
                 />
-                <button onClick={(e)=>add(e)}>add</button>
-                <button onClick={()=>close()}>close</button>
+                <button className={"green"} onClick={(e)=>add(e)}>add</button>
+                <button className={"gold"}  onClick={()=>close()}>close</button>
             </form>
         </div>
     )

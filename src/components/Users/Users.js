@@ -3,7 +3,7 @@ import User from "../User/User";
 import Create from "../Create/Create";
 import './Users.css'
 
-export default function Users(props) {
+export default function Users() {
     let [name, setName] = useState("");
     let [surname, setSurname] = useState("");
     let [age, setAge] = useState("");
@@ -12,6 +12,7 @@ export default function Users(props) {
     let [users, setUsers] = useState(JSON.parse(localStorage.getItem("users"))||[]);
     let [userDetail, setUserDetail] = useState(null);
     let [flag, setFlag] = useState(false);
+    let [flagCreate, setFlagCreate] = useState(true);
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(users))
     })
@@ -32,12 +33,22 @@ export default function Users(props) {
         setUserDetail(detailUser)
     }
 
-    const create=()=>setFlag(true);
-    const close=()=>setFlag(false);
+    const create=()=>{
+        setFlag(true);
+        setFlagCreate(false)
+    }
+    const close=()=>{
+        setFlag(false);
+        setFlagCreate(true)
+    }
 
     const add=(e)=>{
         e.preventDefault();
-        setUsers([...users, {name, surname,age,phone,citi,id: Date.now()}])
+        if(name!==""&&phone.startsWith("+380")) {
+            setUsers([...users, {name, surname, age, phone, citi, id: Date.now()}])
+        }else {
+            alert("Не введено name або номер починаєтся не на +380")
+        }
     };
 
 
@@ -58,22 +69,22 @@ export default function Users(props) {
             <div className={"detail_user"}>
                 {
 
-                    userDetail?(
+                    userDetail&&(
                         <div className={"info_user"}>
+                            <span className={"user_name"}>Name:{userDetail.name}</span>
+                            <span className={"user_surname"}>Surname:{userDetail.surname}</span>
+                            <span className={"user_age"}>Age:{userDetail.age}</span>
                             <span className={"user_phone"}>Phone:{userDetail.phone}</span>
-                            <span className={"user_citi"}>Citi:{userDetail.citi}</span>
-                            <button className={"btn_up"} onClick={update}>update</button>
-                            <button className={"btn_del"} onClick={del}>del</button>
-                        </div>
-                    ):(
-                        <span></span>
-                    )
+                            <span className={"user_citi"}>City:{userDetail.citi}</span>
+                            <button className={"btn-up"} onClick={update}>update</button>
+                            <button className={"btn-del"} onClick={del}>del</button>
+                        </div>)
                 }
             </div>
             <div className={"box-form"}>
                 {
-                    flag?
-                        <Create
+                    flag&&
+                    <Create
                             createName={createName}
                             createSurname={createSurname}
                             createAge={createAge}
@@ -82,33 +93,10 @@ export default function Users(props) {
                             add={add}
                             close={close}
                         />
-                    /*<form>
-                        <input
-                            onChange={createName}
-                            placeholder={"Name"}
-                        />
-                        <input
-                            onChange={createSurname}
-                            placeholder={"Surname"}
-                        />
-                        <input
-                            onChange={createAge}
-                            placeholder={"Age"}
-                        />
-                        <input
-                            onChange={createPhone}
-                            placeholder={"Phone"}
-                        />
-                        <input
-                            onChange={createCiti}
-                            placeholder={"Citi"}
-                        />
-                        <button onClick={add}>add</button>
-                        <button onClick={close}>close</button>
-                    </form>*/
-                        :<span></span>
                 }
-                <button onClick={create}>Create</button>
+                {
+                    flagCreate&& <button className={"create-btn"} onClick={create}>Create</button>
+                }
             </div>
         </div>
     )

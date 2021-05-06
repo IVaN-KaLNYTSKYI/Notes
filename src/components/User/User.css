@@ -1,45 +1,19 @@
 .user_wrapper{
-    background: silver;
-    border: 2px solid red;
-    margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
-
-}
-
-.user_one{
-width: 40%;
-}
-.user_one span{
-    font-size: 18px;
-    display: flex;
-    flex-direction: column;
-}
-.box_btn{
-    width: 40%;
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
-}
-.btn_up{
-    width: 50px;
-    height: 20px;
-    margin-left: 10px;
-    background: lawngreen;
-    border: none;
-    border-radius: 40%;
-}
-.btn_del{
-    width: 50px;
+    margin-top:5px;
+    background: lemonchiffon;
     height: 30px;
-    margin-left: 10px;
-    background: red;
-    border: none;
+
+}
+.user_one{
+    font-size: 16px;
+    font-weight: 600;
 }
 .btn_detail{
     width: 50px;
-    height: 30px;
-    margin-left: 10px;
     background: gold;
-    border: none;
+    /*border: none;*/
+    border-radius: 10%;
 }

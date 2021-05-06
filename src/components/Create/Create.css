@@ -1,0 +1,18 @@
+.form form input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 20px;
+}
+form button{
+    width: 100px;
+    font-size: 20px;
+    border: none;
+    margin-right: 10px;
+}
+.green{
+    background: green;
+}
+.gold{
+    background: gold;
+}
