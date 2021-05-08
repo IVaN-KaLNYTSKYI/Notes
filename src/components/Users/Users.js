@@ -47,7 +47,8 @@ export default function Users() {
         if(name!==""&&phone.startsWith("+380")) {
             setUsers([...users, {name, surname, age, phone, citi, id: Date.now()}])
         }else {
-            alert("Не введено name або номер починаєтся не на +380")
+            alert("Доброго дня)))" +
+                "Ви забули ввести Name або номер телефону починається не на +380")
         }
     };
 
