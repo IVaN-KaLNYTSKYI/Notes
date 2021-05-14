@@ -1,6 +1,6 @@
 import "./Create.css"
 export default function Create (props){
-    const {createName,createSurname,createAge,createPhone,createCiti,add,close}=props
+    const {createName,createSurname,createAge,createPhone,createCity,add,close}=props
     return(
         <div className={"form"}>
             <form>
@@ -22,7 +22,7 @@ export default function Create (props){
                     defaultValue={"+380"}
                 />
                 <input
-                    onChange={(e)=>createCiti(e.target.value)}
+                    onChange={(e)=>createCity(e.target.value)}
                     placeholder={"City"}
                 />
                 <button className={"green"} onClick={(e)=>add(e)}>add</button>
