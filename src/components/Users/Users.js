@@ -15,13 +15,12 @@ export default function Users() {
     let [flag, setFlag] = useState(false);
     let [flagCreate, setFlagCreate] = useState(true);
 
-
     let [flagUpdate, setFlagUpdate] = useState(false);
 
 
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(users))
-    })
+    },[users])
 
     const createName=(valueName)=>setName(name=valueName);
     const createSurname=(valueSurname)=>setSurname(surname=valueSurname);
@@ -62,23 +61,17 @@ export default function Users() {
                 "Ви забули ввести Name або номер телефону починається не на +380")
         }
     };
-    const addUpdate=(nameUpdate,surnameUpdate,ageUpdate,phoneUpdate, cityUpdate,id,e)=>{
-        e.preventDefault();
-        const userUpdate=[...users].map((value)=>{
-            if(value.id===id){
-            value.name=nameUpdate;
-            value.surname=surnameUpdate;
-            value.age=ageUpdate;
-            value.phone=phoneUpdate;
-            value.city=cityUpdate
+    const addUpdate=(obj)=>{
+        const userUpdate=users.map((value)=>{
+            if(value.id===obj.id){
+                return {...value,...obj};
             }
             return value
         })
-
-       setUsers(userUpdate)
-
+        setUsers(userUpdate)
     }
-    const closeUpdate=(e)=>{
+
+    const closeUpdate=()=>{
          setFlagUpdate(false)
     }
 
